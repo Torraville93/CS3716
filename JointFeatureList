@@ -1,0 +1,33 @@
+The student group generating system should:
+F1-generate "fair" groups of students
+F2-support adding description and deadline for group project by instructor
+F3-support adding number of eligible students by instructor
+F4-support adding basic student info by instructor, like names and student numbers
+F5-support adding group size by instructor
+F6-support adding queries by instructor, to get additional info from students
+	(schedules, preferences, experience)
+F7-support adding class and private time schedules by students
+F8-support adding responses, by students, to instructor queries for additional info
+	(schedules, preferences, experience)
+F9-support posting/displaying information to users
+F10-support editing of all added information, by user
+F11-support editing generated groups (reassign students) by instructor
+F12-indicate if any groups were forced
+F13-support different group-generating algorithms
+
+
+1. The most important feature to implement would be feature 1, actually being able to 
+make the groups is alsoessential to the system architecture. Also, this is probably the most 
+difficult feature to implement since we have little experience with such a varying generator.
+This feature was chosen first due to the length of time estimated to implement it, and the 
+huge risk to the system not having this essential functionality.
+2. Features 2 through 8 are also important features to implement since without the ability to 
+add project description, group parameters, etc. the system wouldn't be anything like what the 
+customer wants. This would alleviate quite a bit of risk in our system, allowing the user to 
+enter information. Furthermore, these features happen to be relatively easy to implement, and 
+are pretty similar as a whole. 
+3.  Next would most likely be feature 9, being able to show what information was entered to 
+the users. Without this, the students would not be able to see any information the instructor 
+added in the beginning. Once again, without the ability to see if there are any mistakes in 
+the entered information will help reduce the risk of our system not meeting our customer's 
+requirements.

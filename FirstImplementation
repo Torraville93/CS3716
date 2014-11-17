@@ -4,3 +4,9 @@ Implement feature 1. Will read all students from a text file and put them into a
 group size. The classes of GroupManager and Group will be implemented, and the students will
 be placed into a Group object, in which GroupManager will have the relevant methods to change the
 group according to the user's specifications.
+
+From Fiech:
+- Strategy Pattern
+-Describe use case
+- Domain model diagram
+- Working implementation

@@ -6,7 +6,7 @@ import Users.Student;
 
 public class StudentsFromFile implements RetrieveStudents {
 
-	String file = "students.csv";
+	String file = "studentList.csv";
 	ArrayList<Student> studentList;
 
 	//If time, create getFileName method

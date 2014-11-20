@@ -5,13 +5,16 @@ import java.util.Map;
 
 public class ParameterSpec {
 	
-	private Map properties;
-  
-	public ParameterSpec(Map properties) {
+	public enum Param{ NAME, QUERY, RESPONSE; }
+	
+	private EnumMap<Param,String> properties = null;
+	
+	public ParameterSpec() { properties = new EnumMap<Param, String>(Param.class); }
+	public ParameterSpec(EnumMap properties) {
 		if (properties == null) {
-			this.properties = new HashMap();
+			this.properties = new EnumMap<Param, String>(Param.class);;
 		} else {
-			this.properties = new HashMap(properties);
+			this.properties = new EnumMap(properties);
 		}
 	}
 

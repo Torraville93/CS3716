@@ -1,3 +1,6 @@
+/*
+ * Reads a list of student names and numbers and creates an array of Students.
+ */
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;

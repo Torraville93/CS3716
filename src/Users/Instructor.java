@@ -1,3 +1,6 @@
+/*
+ * A simple class to represent the course instructor.
+ */
 package Users;
 
 import Parameters.*;

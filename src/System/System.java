@@ -48,5 +48,16 @@ public class System {
     public ParameterSpec getParameters() {
     	return instructor.getParameters();
     }
+    
+	public void setGroupSize(int i){
+		groups.setGroupSize(i);
+	}
+	
+	public int getGroupSize(){
+		return groups.getGroupSize();
+	}
+	
+	
+	
 	
 }

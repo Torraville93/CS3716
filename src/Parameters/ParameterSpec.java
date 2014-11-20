@@ -5,8 +5,6 @@ import java.util.Map;
 
 public class ParameterSpec {
 	
-	public enum Param{ NAME, QUERY, RESPONSE; }
-	
 	private EnumMap<Param,String> properties = null;
 	
 	public ParameterSpec() { properties = new EnumMap<Param, String>(Param.class); }

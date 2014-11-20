@@ -53,6 +53,12 @@ public class GroupPreferenceManager_UI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnSubmitButton = new JButton("Submit");
+		btnSubmitButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				groupSize = Integer.parseInt(txtGroupSize.getText());
+			}
+		});
 		btnSubmitButton.setBounds(271, 88, 106, 40);
 		contentPane.add(btnSubmitButton);
 		
@@ -75,7 +81,7 @@ public class GroupPreferenceManager_UI extends JFrame {
 		contentPane.add(lblEnterTheDesired);
 	}
 	
-	public void addActionListenerToInput(ActionListener listener) {
-		txtGroupSize.addActionListener(listener);
+	public int getSizeOfGroup() {
+		return groupSize;
 	}
 }

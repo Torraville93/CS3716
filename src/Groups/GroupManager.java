@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JTextField;
+
 import Retrevial.StudentsFromFile;
 import SystemUI.GroupPreferenceManager_UI;
 import Users.Student;
@@ -15,13 +17,9 @@ public class GroupManager {
 
 	private ArrayList<Student> studentList;
 	private int groupSize;
-	public GroupManager(){
-		groupUI.addAcionListenerToInput(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				inputActionPerformed(e);
-			}
-		});
-	}
+
+	
+	
 	public void setGroupSize(int i){
 		groupSize = i;
 	}
@@ -38,5 +36,7 @@ public class GroupManager {
 	}
 	
 	
+	
+
 
 }

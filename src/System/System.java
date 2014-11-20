@@ -49,7 +49,8 @@ public class System {
     	return instructor.getParameters();
     }
     
-	public void setGroupSize(int i){
+	public void setGroupSize(SystemUI.GroupPreferenceManager_UI gpm){
+		int i = gpm.getSizeOfGroup();
 		groups.setGroupSize(i);
 	}
 	

@@ -6,10 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -49,13 +53,6 @@ public class GroupPreferenceManager_UI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnSubmitButton = new JButton("Submit");
-		btnSubmitButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				courseNum = txtCourseNumber.getText();
-				groupSize = Integer.parseInt(txtGroupSize.getText());
-			}
-		});
 		btnSubmitButton.setBounds(271, 88, 106, 40);
 		contentPane.add(btnSubmitButton);
 		
@@ -76,5 +73,9 @@ public class GroupPreferenceManager_UI extends JFrame {
 		JLabel lblEnterTheDesired = new JLabel("Enter the desired group size:");
 		lblEnterTheDesired.setBounds(12, 55, 250, 15);
 		contentPane.add(lblEnterTheDesired);
+	}
+	
+	public void addActionListenerToInput(ActionListener listener) {
+		txtGroupSize.addActionListener(listener);
 	}
 }

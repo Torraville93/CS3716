@@ -1,3 +1,6 @@
+/*
+ * An interface to allow the system to retrieve students
+ */
 import java.io.IOException;
 import java.util.ArrayList;
 

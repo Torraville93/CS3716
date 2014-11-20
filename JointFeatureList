@@ -17,7 +17,7 @@ F13-support different group-generating algorithms
 
 
 1. The most important feature to implement would be feature 1, actually being able to 
-make the groups is alsoessential to the system architecture. Also, this is probably the most 
+make the groups is essential to the system architecture. Also, this is probably the most 
 difficult feature to implement since we have little experience with such a varying generator.
 This feature was chosen first due to the length of time estimated to implement it, and the 
 huge risk to the system not having this essential functionality.
@@ -28,6 +28,5 @@ enter information. Furthermore, these features happen to be relatively easy to i
 are pretty similar as a whole. 
 3.  Next would most likely be feature 9, being able to show what information was entered to 
 the users. Without this, the students would not be able to see any information the instructor 
-added in the beginning. Once again, without the ability to see if there are any mistakes in 
-the entered information will help reduce the risk of our system not meeting our customer's 
-requirements.
+added in the beginning. Once again, the ability to see if there are any mistakes in the entered 
+information will help reduce the risk of our system not meeting our customer's requirements.

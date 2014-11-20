@@ -1,3 +1,6 @@
+/*
+ * A simple class to represent a student.
+ */
 package Users;
 
 public class Student {

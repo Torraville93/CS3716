@@ -1,0 +1,74 @@
+Name: Construct Student-Group Parameters
+
+Description: Instructor will enter the group’s sizes, questions for students and a deadline 
+which all info must be added by. The instructor will also have the option to prohibit certain 
+groups in working together.
+
+Actors: Instructor
+
+Basic/Alternate Flow:
+1. System receives all relevant student information.			
+2. Instructor assesses student information.
+3. Instructor sets group size.
+4. Instructor formulates evaluation criteria for students.
+5. Instructor adds evaluation criteria for the students to fill out.	
+	5.1 Instructor edits/adds evaluation criteria. Repeat from step 2.
+6. Instructor allows/prohibits groups in working together.
+7. Instructor adds deadline for students.
+8. Instructor makes "public" for students.
+
+Preconditions: The instructor and course must be registered and active for the term. The 
+instructor must be able to access the class list and student information.  Number of 
+students, their names, schedule and previous grades from the system relevant to the current course.
+
+Postconditions: All relevant student information should be added to the system.  That is, 
+all the required information from the precondition. The instructor should also have all 
+evaluation criteria ready to be filled out and submitted as well as the deadline for 
+said information.  
+
+
+
+Name: Define Student-group Criteria
+
+Description: Students will be able to enter/submit evaluation criteria the instructor has provided.
+
+Actors: Students
+
+Basic/Alternate Flow:
+1. Student assesses requested evaluation criteria from instructor.
+2. Student enters evaluation criteria to system.
+3. Student saves and submits their responses to evaluation criteria.		
+	3.1 Students needs to edit/update evaluation criteria, i.e. schedules, grades etc...
+	3.2 Students who do not enter evaluation criteria before deadline will remain blank.
+
+
+Preconditions: All evaluation criteria from the instructor should be completed prior to making 
+the system public.  The system must be made viewable for the students to enter any requested 
+evaluation criteria. The students must be registered for the term and class.
+
+Postconditions: All evaluation criteria should be filled out/submitted by students. All edits 
+should be finalized before the deadline and students disconnected. 
+
+
+Name:  Generate/Finalize Student-Groups
+
+Description: System will Generate and Finalize Student-Groups that are fair and follow 
+instructor’s requirements. The instructor will be able to allow/disallow certain 
+suggested groups based on criterion they felt were important. 
+
+Actors: Instructor
+
+Basic/Alternate Flow:
+1. Instructor asks system to generate student-groups.
+2. System generates groups based on given evaluation criteria.
+3. System returns student-groups.
+4. System indicates whether any groups were forced and why.
+	4.1 Instructor edits/overrides groups
+5. Instructor finalizes student groups.
+6. Instructor makes student groups public.
+
+Preconditions: All students have their evaluation criteria filled out and submitted. 
+Also the deadline is passed.
+
+Postconditions: Student-groups are formed and finalized based on evaluation criteria 
+and instructors overrides. The instructor will publish the groups for the students to view.

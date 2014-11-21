@@ -1,11 +1,7 @@
 package Groups;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.swing.JTextField;
 
 import Retrevial.StudentsFromFile;
 import SystemUI.GroupPreferenceManager_UI;
@@ -32,6 +28,8 @@ public class GroupManager {
 		
 	StudentsFromFile sff = new StudentsFromFile();
 	studentList = sff.getStudents();
+	
+	
 	
 	}
 	

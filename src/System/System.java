@@ -26,13 +26,7 @@ public class System {
 		deadline = date;
 	}
 	
-	public void addStudent(Student student){
-		students.add(student);
-	}
-
-    public boolean removeStudent(Student student){
-    	return students.remove(student);
-    }
+	
     
     public Student getStudent(Number number) {
     	for (Student stu : students) {

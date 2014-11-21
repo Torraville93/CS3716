@@ -1,25 +1,27 @@
-package System;
+package SystemFiles;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import Groups.Group;
 import Groups.GroupManager;
 import Parameters.*;
 import Users.*;
 
 
-public class System {
+public class GroupSystem {
 	
 	ArrayList<Student> students;
 	private String deadline;
 	private Instructor instructor;
-	private GroupManager groups;
+	private GroupManager groupManager;
 	private ArrayList<GroupParameter> params;
 	
-	public System() {
+	public GroupSystem() {
 		students = new ArrayList<Student>();
 		instructor = new Instructor();
-		groups = new GroupManager();
+		groupManager = new GroupManager(new Generator.SimpleGenerate());
 	}
 	
 	public void setDeadline(String date){
@@ -27,7 +29,6 @@ public class System {
 	}
 	
 	
-    
     public Student getStudent(Number number) {
     	for (Student stu : students) {
     		if (stu.getNumber() == number) return stu;
@@ -43,16 +44,23 @@ public class System {
     	return instructor.getParameters();
     }
     
-	public void setGroupSize(SystemUI.GroupPreferenceManager_UI gpm){
-		int i = gpm.getSizeOfGroup();
-		groups.setGroupSize(i);
+	public void setGroupSize(int groupSize){
+		groupManager.setGroupSize(groupSize);
 	}
 	
 	public int getGroupSize(){
-		return groups.getGroupSize();
+		return groupManager.getGroupSize();
 	}
 	
-	
+	public static void main(String[] args) throws IOException {
+		GroupManager gm;
+		gm = new GroupManager(new Generator.SimpleGenerate());
+		ArrayList<Group> groupList = gm.createGroups();
+		
+		for (int i = 0 ; i < groupList.size(); i++) {
+			System.out.println(groupList.get(i));
+		}
+	}
 	
 	
 }

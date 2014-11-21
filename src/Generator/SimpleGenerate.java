@@ -19,6 +19,7 @@ public class SimpleGenerate implements GeneratorStrategy {
 			for (int i = 0 ; i < groupSize ; i++) {
 				tempGroup.addStudent(studentListCopy.get(i));
 				studentListCopy.remove(i);
+				System.out.println(i);
 			}
 			
 			completeListOfGroups.add(tempGroup);

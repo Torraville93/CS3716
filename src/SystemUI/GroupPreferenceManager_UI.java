@@ -1,4 +1,5 @@
 package SystemUI;
+import SystemFiles.GroupSystem;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -58,6 +59,8 @@ public class GroupPreferenceManager_UI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				groupSize = Integer.parseInt(txtGroupSize.getText());
 				courseNum = txtCourseNumber.getText();
+				GroupSystem sys = new GroupSystem();
+				sys.setGroupSize(groupSize);
 			}
 		});
 		btnSubmitButton.setBounds(271, 88, 106, 40);

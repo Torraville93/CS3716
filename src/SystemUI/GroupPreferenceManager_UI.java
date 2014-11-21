@@ -57,6 +57,7 @@ public class GroupPreferenceManager_UI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				groupSize = Integer.parseInt(txtGroupSize.getText());
+				courseNum = txtCourseNumber.getText();
 			}
 		});
 		btnSubmitButton.setBounds(271, 88, 106, 40);

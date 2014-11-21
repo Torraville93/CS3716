@@ -40,6 +40,8 @@ public class GroupManager {
 		Student s6 = new Student("Mr. T", 6);
 		Student s7 = new Student("Mrs. T", 7);
 		Student s8 = new Student("Chair", 8);
+		Student s9 = new Student("Desk",9);
+		Student s10 = new Student("Liquid Snake", 10);
 		
 		studentList.add(s1);
 		studentList.add(s2);
@@ -48,9 +50,11 @@ public class GroupManager {
 		studentList.add(s5);
 		studentList.add(s6);
 		studentList.add(s7);
-		studentList.add(s8);
+	    studentList.add(s8);
+		studentList.add(s9);
+		studentList.add(s10);
 		
-		return this.strategy.generateGroups(studentList, groupSize);
+		return this.strategy.generateGroups(studentList, 3);
 	}
 
 }

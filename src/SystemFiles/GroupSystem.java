@@ -58,7 +58,8 @@ public class GroupSystem {
 		ArrayList<Group> groupList = gm.createGroups();
 		
 		for (int i = 0 ; i < groupList.size(); i++) {
-			System.out.println(groupList.get(i));
+			groupList.get(i).getStudentNames();
+			System.out.println("");
 		}
 	}
 	

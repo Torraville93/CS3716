@@ -8,7 +8,6 @@ import Users.Student;
 public class SimpleGenerate implements GeneratorStrategy {
 	
 
-
 	public ArrayList<Group> generateGroups(ArrayList<Student> studentList, int groupSize) {
 
 		ArrayList<Student> studentListCopy = studentList;

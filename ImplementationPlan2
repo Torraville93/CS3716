@@ -1,0 +1,9 @@
+
+- Fix bug that does not print the last group.
+- Add a GUI window to display generated groups.
+
+- Implement Feature 6 "support adding queries by instructor, to get additional info from students
+	(schedules, preferences, experience)"
+
+- If time allows, begin implementing feature 7 "F7-support adding class 
+and private time schedules by students"

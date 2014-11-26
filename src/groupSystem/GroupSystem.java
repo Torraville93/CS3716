@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import parameters.*;
+import retrieval.*;
 import users.*;
 
 
@@ -18,12 +19,14 @@ public class GroupSystem {
 	private static ArrayList<GroupParameter> params;
 	private String courseName;
 	private String description;
+	private RetrieveStudents retrievalMethod;
 	
 	public GroupSystem() {
 		students = new ArrayList<Student>();
 		instructor = new Instructor();
 		setGroupManager(new GroupManager());
 		params = ParameterCollection.getInstance();
+		setRetrievalMethod(new StudentsFromFile());
 	}
 	
 	public void setDeadline(String date){
@@ -79,5 +82,13 @@ public class GroupSystem {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public RetrieveStudents getRetrievalMethod() {
+		return retrievalMethod;
+	}
+
+	public void setRetrievalMethod(RetrieveStudents retrievalMethod) {
+		this.retrievalMethod = retrievalMethod;
 	}
 }

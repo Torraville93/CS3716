@@ -29,34 +29,4 @@ public class ParameterSpec {
 	public EnumMap<Param,String> getProperties() {
 		return properties;
 	}
-	
-	
-	
-	/*private EnumMap<Param,String> properties = null;
-	
-	public ParameterSpec() { properties = new EnumMap<Param, String>(Param.class); }
-	public ParameterSpec(EnumMap properties) {
-		if (properties == null) {
-			this.properties = new EnumMap<Param, String>(Param.class);;
-		} else {
-			this.properties = new EnumMap(properties);
-		}
-	}
-
-	public void addProperty(String propertyName, String property) {
-		properties.put(propertyName, property);
-	}
-
-	public void setProperties(Map properties) {
-		this.properties = properties;
-	}
-  
-	public Object getProperty(String propertyName) {
-		return properties.get(propertyName);
-	}
-
-	public Map getProperties() {
-		return properties;
-	}*/
-
 }

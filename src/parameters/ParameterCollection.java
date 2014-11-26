@@ -17,7 +17,7 @@ public class ParameterCollection<GroupParameter> {
 	   
 	   /**
 	    * Static 'instance' method
-	    * @return singletion collection
+	    * @return singleton collection
 	    */
 	   public static ArrayList getInstance() {
 		   return singleton;

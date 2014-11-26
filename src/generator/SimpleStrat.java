@@ -13,7 +13,7 @@ import users.Student;
 
 public class SimpleStrat implements GeneratorStrategy {
 
-	@Override
+	//@Override
 	public ArrayList<Group> generateGroups() {
 		ArrayList<Group> tmp = new ArrayList<Group>();
 		Group group = new Group();

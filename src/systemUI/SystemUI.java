@@ -122,6 +122,17 @@ public class SystemUI extends JFrame {
 				System.out.println("Added students: "+system.students.size());
 				system.setDescription(txtDescription.getText());
 				System.out.println("Description: "+system.getDescription());
+				
+				GeneratorStrategy gs = new SimpleStrat();
+				ArrayList<Group> aa = system.getGroupManager().generateGroups(gs);
+				int grpNum = 1;
+				System.out.println("\nGenerating groups using simple strategy: ");
+				for (Group grp: aa) {
+					System.out.println("--Group "+grpNum); grpNum++; 
+					for (Student stu: grp.getStudents()) {
+						System.out.println("\t"+stu.getName());
+					}
+				}
 			}
 		});
 		btnSubmitButton.setBounds(271, 335, 100, 20);

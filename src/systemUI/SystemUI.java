@@ -31,6 +31,7 @@ import java.awt.event.MouseEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 
 /**
@@ -44,6 +45,7 @@ public class SystemUI extends JFrame {
 	private JTextField txtDeadline;
 	private JTextArea txtDescription;
 	private JComboBox stuRetrievalBox;
+	private JComboBox cmboGenerationMethod;
 	private GroupSystem system;
 	
 	/**
@@ -92,13 +94,20 @@ public class SystemUI extends JFrame {
 		contentPane.add(stuRetrievalBox);
 		
 		JLabel lblEnterDescription = new JLabel("Enter project description:");
-		lblEnterDescription.setBounds(12, 178, 250, 15);
+		lblEnterDescription.setBounds(12, 264, 250, 15);
 		contentPane.add(lblEnterDescription);
 		txtDescription = new JTextArea();
 		JScrollPane sp = new JScrollPane(txtDescription);
-		sp.setBounds(12, 202, 362, 127);
-		add(sp);
+		sp.setBounds(12, 291, 362, 38);
+		getContentPane().add(sp);
 		
+		cmboGenerationMethod = new JComboBox(new Object[]{});
+
+		cmboGenerationMethod.setModel(new DefaultComboBoxModel(new String[] {"Basic", "Feedback"}));
+		cmboGenerationMethod.setBounds(271, 168, 103, 27);
+		contentPane.add(cmboGenerationMethod);
+
+		JButton btnGenerateGroups = new JButton("Generate Groups");
 		JButton btnSubmitButton = new JButton("Submit");
 		btnSubmitButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -122,10 +131,40 @@ public class SystemUI extends JFrame {
 				//else other method of getting students
 				System.out.println("Added students: "+system.students.size());
 				system.setDescription(txtDescription.getText());
-				System.out.println("Description: "+system.getDescription());
+				System.out.println("Description: "+system.getDescription());				
 				
+			}
+		});
+		
+		btnGenerateGroups.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent event) {
 				
-				GeneratorStrategy gs = new SimpleStrat();
+				/*
+				 * "Defaults" set for generate group. If Basic is chosen, then no
+				 * student feedback is required, and so the groups can just be generated
+				 * directly from the supplied data.
+				 */
+				
+				int tmp = system.getGroupManager().getGroupSize(); //Set to default size
+				try {
+					tmp = Integer.parseInt(txtGroupSize.getText());
+				} catch(NumberFormatException e){ e.printStackTrace(); }
+				system.getGroupManager().setGroupSize(tmp);
+				System.out.println("Group Size: "+system.getGroupManager().getGroupSize());
+				
+				if (stuRetrievalBox.getSelectedIndex() == 0) {
+					system.setRetrievalMethod(new StudentsFromFile());
+					try {
+						system.students = system.getRetrievalMethod().getStudents();
+					} catch (IOException e) { e.printStackTrace(); }
+				}
+
+				GeneratorStrategy gs = new SimpleStrat();  //Default to SimpleStrategy
+				
+				if (cmboGenerationMethod.getSelectedIndex() == 1) {
+					 gs = new DecentStrat();		//If the user picks Feedback, use it
+				}
 				
 				StringBuilder stringBuilder = new StringBuilder();
 				ArrayList<Group> aa = system.getGroupManager().generateGroups(gs);
@@ -144,6 +183,14 @@ public class SystemUI extends JFrame {
 		});
 		btnSubmitButton.setBounds(271, 335, 100, 20);
 		contentPane.add(btnSubmitButton);
+		
+		btnGenerateGroups.setBounds(71, 334, 191, 22);
+		contentPane.add(btnGenerateGroups);
+		
+		
+		JLabel lblChooseTheGeneration = new JLabel("Choose the generation method:");
+		lblChooseTheGeneration.setBounds(12, 174, 250, 15);
+		contentPane.add(lblChooseTheGeneration);
 	}
 	
 	// Launch the application.

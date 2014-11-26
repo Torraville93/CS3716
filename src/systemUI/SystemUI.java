@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -123,16 +124,22 @@ public class SystemUI extends JFrame {
 				system.setDescription(txtDescription.getText());
 				System.out.println("Description: "+system.getDescription());
 				
+				
 				GeneratorStrategy gs = new SimpleStrat();
+				
+				StringBuilder stringBuilder = new StringBuilder();
 				ArrayList<Group> aa = system.getGroupManager().generateGroups(gs);
 				int grpNum = 1;
-				System.out.println("\nGenerating groups using simple strategy: ");
+				stringBuilder.append("\nGenerating groups using simple strategy: ");
 				for (Group grp: aa) {
-					System.out.println("--Group "+grpNum); grpNum++; 
+					stringBuilder.append("\n\n --Group "+grpNum); grpNum++; 
 					for (Student stu: grp.getStudents()) {
-						System.out.println("\t"+stu.getName());
+						stringBuilder.append("\n\t"+stu.getName());
 					}
 				}
+				
+				String groupOutput = stringBuilder.toString();		//Add all groups to a String
+				JOptionPane.showMessageDialog(contentPane, groupOutput); //Output in popup
 			}
 		});
 		btnSubmitButton.setBounds(271, 335, 100, 20);

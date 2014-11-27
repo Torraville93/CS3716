@@ -25,12 +25,12 @@ public class ParameterSpec {
 	public String getProperty(Param propertyName) {
 		return properties.get(propertyName);
 	}
+	
+	public String removeProperty(Param propertyName) {
+		return properties.remove(propertyName);
+	}
 
 	public EnumMap<Param,String> getProperties() {
 		return properties;
-	}
-	
-	public String toString() {
-		return "The name is: " + Param.NAME.toString() + " and the query is : " + Param.QUERY.toString();
 	}
 }

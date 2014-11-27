@@ -1,64 +1,49 @@
 package users;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import parameters.*;
 
-public class Instructor extends User {
+public class Instructor implements User {
 	
-	public Instructor() {}
+	private String name;
+	private Number numID=0;//Default Instructor ID (using for now)
+	private GroupParameter param;
+	private List<GroupParameter> parameters;
+		
+	public Instructor() { parameters = ParameterCollection.getInstance(); }
 	public Instructor(String name, Number numID) {
-		super(name,numID);
+		this.name = name; 
+		this.numID = numID;
+		parameters = ParameterCollection.getInstance();
 	}
 	
-    public void setName(String name){
-    	super.setName(name);
-    }
-
-    public String getName(){
-    	return super.getName();
-    }
-
-    public void setID(Number numID){
-    	super.setID(numID);
-    }
-
-    public Number getID(){
-    	return super.getID();
-    }
-    
-    public void addParameter(Param propertyName, String property) {
-    	super.addParameter(propertyName, property);
-    }
-    
-    public ParameterSpec getParameters() {
-    	return super.getParameters();
-    }
+	public void setName(String name){
+		this.name = name;
+	}
 	
-	
-	/*
-	public Instructor() {}
-	
-    public void setName(String name){
-    	this.name = name;
-    }
-
-    public String getName(){
+	public String getName(){
     	return name;
     }
-
-    public void setID(Number numID){
-    	this.number = numID;
+	    
+	public void setID(Number numID){
+    	this.numID = numID;
+    }
+	    
+	public Number getID(){
+    	return numID;
     }
 
-    public Number getNumber(){
-    	return number;
-    }
-    
-    public void addParameter(Param propertyName, String property) {
-    	params.addParameter(propertyName, property);
-    }
-    
-    public ParameterSpec getParameters() {
-    	return params.getSpec();
-    }
-*/
+	public void addParameter(GroupParameter grpParam) {
+		parameters.add(grpParam);
+	}
+	
+	public boolean removeParameter(GroupParameter grpParam) {
+		return parameters.remove(grpParam);
+	}
+
+	public List<GroupParameter> getParameters() {
+		return parameters;
+	}
 }

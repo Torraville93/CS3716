@@ -24,15 +24,15 @@ public class GeneratorTest {
 		RetrieveStudents rs = new StudentsFromFile();
 		GroupSystem.students = rs.getStudents();
 
-//		GeneratorStrategy gs = new SimpleStrat();
-//		ArrayList<Group> aa = gs.generateGroups();
-//		int grpNum = 1;
-//		System.out.println("\nGenerating groups using simple strategy: ");
-//		for (Group grp: aa) {
-//			System.out.println("--Group "+grpNum); grpNum++; 
-//			for (Student stu: grp.getStudents()) {
-//				System.out.println("\t"+stu.getName());
-//			}
-//		}
+		GeneratorStrategy gs = new SimpleStrat();
+		ArrayList<Group> aa = gs.generateGroups();
+		int grpNum = 1;
+		System.out.println("\nGenerating groups using simple strategy: ");
+		for (Group grp: aa) {
+			System.out.println("--Group "+grpNum); grpNum++; 
+			for (Student stu: grp.getStudents()) {
+				System.out.println("\t"+stu.getName());
+			}
+		}
 	}
 }

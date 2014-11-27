@@ -1,6 +1,7 @@
 package parameters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Singleton collection of Parameter objects
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  */
 public class ParameterCollection<GroupParameter> {
 
-	private static ArrayList singleton = new ArrayList();
+	private static List singleton = new ArrayList();
 	   
 	   /** A private Constructor prevents any other 
 	    *  class from instantiating.
@@ -19,7 +20,7 @@ public class ParameterCollection<GroupParameter> {
 	    * Static 'instance' method
 	    * @return singleton collection
 	    */
-	   public static ArrayList getInstance() {
+	   public static List getInstance() {
 		   return singleton;
 	   }
 }

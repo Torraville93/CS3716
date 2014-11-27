@@ -131,7 +131,12 @@ public class SystemUI extends JFrame {
 				//else other method of getting students
 				System.out.println("Added students: "+system.students.size());
 				system.setDescription(txtDescription.getText());
-				System.out.println("Description: "+system.getDescription());				
+				System.out.println("Description: "+system.getDescription());	
+				
+				if (cmboGenerationMethod.getSelectedIndex() == 1) {
+					 QuestionsUI qUI = new QuestionsUI();
+					 qUI.setVisible(true);
+				}
 				
 			}
 		});

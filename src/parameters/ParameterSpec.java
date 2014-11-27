@@ -29,4 +29,8 @@ public class ParameterSpec {
 	public EnumMap<Param,String> getProperties() {
 		return properties;
 	}
+	
+	public String toString() {
+		return "The name is: " + Param.NAME.toString() + " and the query is : " + Param.QUERY.toString();
+	}
 }

@@ -138,6 +138,11 @@ public class SystemUI extends JFrame {
 					 qUI.setVisible(true);
 				}
 				
+				/*
+				 * This doesn't actually work yet, simply for testing.
+				 */
+		      	System.out.println(system.getParameters().toString());
+
 			}
 		});
 		

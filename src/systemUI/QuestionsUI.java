@@ -9,14 +9,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import parameters.*;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class QuestionsUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtQuery;
+	private JTextField txtName;
 
 	/**
 	 * Launch the application.
@@ -49,26 +52,27 @@ public class QuestionsUI extends JFrame {
 		lblPleaseEnterYour.setBounds(12, 12, 337, 27);
 		contentPane.add(lblPleaseEnterYour);
 		
-		textField = new JTextField();
-		textField.setBounds(12, 46, 327, 32);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtQuery = new JTextField();
+		txtQuery.setBounds(12, 46, 327, 32);
+		contentPane.add(txtQuery);
+		txtQuery.setColumns(10);
 		
 		JLabel lblEnterAParameter = new JLabel("Enter a parameter name (ie, GPA, experience):");
 		lblEnterAParameter.setBounds(12, 79, 365, 41);
 		contentPane.add(lblEnterAParameter);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(12, 116, 120, 32);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtName = new JTextField();
+		txtName.setBounds(12, 116, 120, 32);
+		contentPane.add(txtName);
+		txtName.setColumns(10);
 		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
+				ParameterSpec tmpSpec = new ParameterSpec();
+				tmpSpec.addProperty(Param.NAME, txtName.getText());
+				tmpSpec.addProperty(Param.QUERY, txtQuery.getText());
 			}
 		});
 		btnAdd.setBounds(261, 162, 71, 25);

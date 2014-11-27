@@ -1,41 +1,19 @@
 package users;
 
+import java.util.List;
+
 import parameters.*;
 
-public class User {
-		
-	private String name;
-	private Number numID;
-	private GroupParameter params;
-		
-	public User() {}
-	public User(String name, Number numID) {
-		this.name = name; 
-		this.numID = numID;
-	}
+public interface User {
 	
-	public void setName(String name){
-		this.name = name;
-	}
+	public void setName(String name);
 	
-	public String getName(){
-    	return name;
-    }
+	public String getName();
 	    
-	public void setID(Number numID){
-    	this.numID = numID;
-    }
+	public void setID(Number numID);
 	    
-	public Number getID(){
-    	return numID;
-    }
-
-	public void addParameter(Param propertyName, String property) {
-		params.addParameter(propertyName, property);
-	}
+	public Number getID();
 	    
-	public ParameterSpec getParameters() {
-		return params.getSpec();
-	}
+	public List<GroupParameter> getParameters();
 
 }

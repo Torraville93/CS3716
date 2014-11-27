@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import parameters.*;
 import retrieval.*;
 import users.*;
 
@@ -31,7 +32,7 @@ import java.awt.event.MouseEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
+import java.util.EnumMap;
 
 
 /**
@@ -45,8 +46,11 @@ public class SystemUI extends JFrame {
 	private JTextField txtDeadline;
 	private JTextArea txtDescription;
 	private JComboBox stuRetrievalBox;
-	private JComboBox cmboGenerationMethod;
+	private JComboBox genStrategyBox;
+	private JButton btnSubmitButton;
+	private JButton btnGenerateButton;
 	private GroupSystem system;
+	private QuestionsUI qUI;
 	
 	/**
 	 * Construct UI and swing widgets.
@@ -54,7 +58,7 @@ public class SystemUI extends JFrame {
 	public SystemUI() {
 		super("Group Generator System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 407, 398);
+		setBounds(100, 100, 407, 428);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,7 +69,7 @@ public class SystemUI extends JFrame {
 		lblEnterCourse.setBounds(12, 16, 250, 15);
 		contentPane.add(lblEnterCourse);
 		txtCourseName = new JTextField();
-		txtCourseName.setBounds(271, 12, 103, 27);
+		txtCourseName.setBounds(287, 12, 103, 27);
 		contentPane.add(txtCourseName);
 		txtCourseName.setColumns(10);
 		
@@ -74,7 +78,7 @@ public class SystemUI extends JFrame {
 		contentPane.add(lblEnterGrpSize);
 		txtGroupSize = new JTextField();
 		txtGroupSize.setColumns(10);
-		txtGroupSize.setBounds(271, 51, 103, 27);
+		txtGroupSize.setBounds(287, 51, 103, 27);
 		contentPane.add(txtGroupSize);
 		
 		JLabel lblEnterDeadline = new JLabel("Enter the desired deadline:");
@@ -82,104 +86,74 @@ public class SystemUI extends JFrame {
 		contentPane.add(lblEnterDeadline);
 		txtDeadline = new JTextField();
 		txtDeadline.setColumns(10);
-		txtDeadline.setBounds(271, 90, 103, 27);
+		txtDeadline.setBounds(287, 90, 103, 27);
 		contentPane.add(txtDeadline);
 		
-		JLabel lblEnterRetrieval = new JLabel("Enter the desired student-retrieval:");
-		lblEnterRetrieval.setBounds(12, 133, 250, 15);
+		JLabel lblEnterRetrieval = new JLabel("Select the desired student-retrieval:");
+		lblEnterRetrieval.setBounds(12, 136, 250, 15);
 		contentPane.add(lblEnterRetrieval);
-		String[] retrievalTypes = { "From file", "Manually"};
+		String[] retrievalTypes = { "From File", "Manually"};
 		stuRetrievalBox = new JComboBox(retrievalTypes);
-		stuRetrievalBox.setBounds(271, 129, 103, 27);
+		stuRetrievalBox.setBounds(287, 129, 103, 27);
 		contentPane.add(stuRetrievalBox);
 		
+		JLabel lblEnterStrategy = new JLabel("Select the desired generating strategy:");
+		lblEnterStrategy.setBounds(12, 175, 250, 15);
+		contentPane.add(lblEnterStrategy);
+		String[] genStrategies = { "Simple", "Parameter"};
+		genStrategyBox = new JComboBox(genStrategies);
+		genStrategyBox.setBounds(287, 168, 103, 27);
+		contentPane.add(genStrategyBox);
+		
 		JLabel lblEnterDescription = new JLabel("Enter project description:");
-		lblEnterDescription.setBounds(12, 264, 250, 15);
+		lblEnterDescription.setBounds(12, 214, 250, 15);
 		contentPane.add(lblEnterDescription);
 		txtDescription = new JTextArea();
 		JScrollPane sp = new JScrollPane(txtDescription);
-		sp.setBounds(12, 291, 362, 38);
-		getContentPane().add(sp);
+		sp.setBounds(15, 232, 372, 127);
+		add(sp);
 		
-		cmboGenerationMethod = new JComboBox(new Object[]{});
-
-		cmboGenerationMethod.setModel(new DefaultComboBoxModel(new String[] {"Basic", "Feedback"}));
-		cmboGenerationMethod.setBounds(271, 168, 103, 27);
-		contentPane.add(cmboGenerationMethod);
-
-		JButton btnGenerateGroups = new JButton("Generate Groups");
-		JButton btnSubmitButton = new JButton("Submit");
-		btnSubmitButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent event) {
+		btnSubmitButton = new JButton("Submit");
+		btnGenerateButton = new JButton("Generate Groups");
+		btnGenerateButton.setEnabled(false);
+		btnSubmitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
 				int tmp = system.getGroupManager().getGroupSize(); //Set to default size
 				try {
 					tmp = Integer.parseInt(txtGroupSize.getText());
 				} catch(NumberFormatException e){ e.printStackTrace(); }
-				system.getGroupManager().setGroupSize(tmp);
-				System.out.println("Group Size: "+system.getGroupManager().getGroupSize());
 				system.setCourseName(txtCourseName.getText());
 				System.out.println("Course Name: "+system.getCourseName());
+				system.getGroupManager().setGroupSize(tmp);
+				System.out.println("Group Size: "+system.getGroupManager().getGroupSize());
 				system.setDeadline(txtDeadline.getText());
 				System.out.println("Deadline: "+system.getDeadline());
 				if (stuRetrievalBox.getSelectedIndex() == 0) {
 					system.setRetrievalMethod(new StudentsFromFile());
 					try {
-						system.students = system.getRetrievalMethod().getStudents();
+						GroupSystem.students = system.getRetrievalMethod().getStudents();
 					} catch (IOException e) { e.printStackTrace(); }
-				}
-				//else other method of getting students
-				System.out.println("Added students: "+system.students.size());
-				system.setDescription(txtDescription.getText());
-				System.out.println("Description: "+system.getDescription());	
-				
-				if (cmboGenerationMethod.getSelectedIndex() == 1) {
-					 QuestionsUI qUI = new QuestionsUI();
+				} //else other method of getting students
+				System.out.println("Added students '"+stuRetrievalBox.getSelectedItem()+"': "+GroupSystem.students.size());
+				if (genStrategyBox.getSelectedIndex() == 0) {
+					 system.getGroupManager().setStrategy(new SimpleStrat());
+					 btnGenerateButton.setEnabled(true);
+				} else if (genStrategyBox.getSelectedIndex() == 1) {
+					system.getGroupManager().setStrategy(new ParameterStrat());
+					 qUI = new QuestionsUI(system);
 					 qUI.setVisible(true);
 				}
-				
-				/*
-				 * This doesn't actually work yet, simply for testing.
-				 */
-		      	System.out.println(system.getParameters().toString());
-
-			}
-		});
-		
-		btnGenerateGroups.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent event) {
-				
-				/*
-				 * "Defaults" set for generate group. If Basic is chosen, then no
-				 * student feedback is required, and so the groups can just be generated
-				 * directly from the supplied data.
-				 */
-				
-				int tmp = system.getGroupManager().getGroupSize(); //Set to default size
-				try {
-					tmp = Integer.parseInt(txtGroupSize.getText());
-				} catch(NumberFormatException e){ e.printStackTrace(); }
-				system.getGroupManager().setGroupSize(tmp);
-				System.out.println("Group Size: "+system.getGroupManager().getGroupSize());
-				
-				if (stuRetrievalBox.getSelectedIndex() == 0) {
-					system.setRetrievalMethod(new StudentsFromFile());
-					try {
-						system.students = system.getRetrievalMethod().getStudents();
-					} catch (IOException e) { e.printStackTrace(); }
-				}
-
-				GeneratorStrategy gs = new SimpleStrat();  //Default to SimpleStrategy
-				
-				if (cmboGenerationMethod.getSelectedIndex() == 1) {
-					 gs = new DecentStrat();		//If the user picks Feedback, use it
-				}
-				
+				system.setDescription(txtDescription.getText());
+				System.out.println("Description: "+system.getDescription());
+		      }
+		    });
+		btnGenerateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
 				StringBuilder stringBuilder = new StringBuilder();
+				GeneratorStrategy gs = system.getGroupManager().getStrategy();
 				ArrayList<Group> aa = system.getGroupManager().generateGroups(gs);
 				int grpNum = 1;
-				stringBuilder.append("\nGenerating groups using simple strategy: ");
+				stringBuilder.append("\nGenerating groups using "+genStrategyBox.getSelectedItem()+" strategy: ");
 				for (Group grp: aa) {
 					stringBuilder.append("\n\n --Group "+grpNum); grpNum++; 
 					for (Student stu: grp.getStudents()) {
@@ -188,19 +162,14 @@ public class SystemUI extends JFrame {
 				}
 				
 				String groupOutput = stringBuilder.toString();		//Add all groups to a String
-				JOptionPane.showMessageDialog(contentPane, groupOutput); //Output in popup
+				JOptionPane.showMessageDialog(contentPane, groupOutput); //Output in pop-up
 			}
 		});
-		btnSubmitButton.setBounds(271, 335, 100, 20);
+		
+		btnSubmitButton.setBounds(315, 370, 75, 20);
 		contentPane.add(btnSubmitButton);
-		
-		btnGenerateGroups.setBounds(71, 334, 191, 22);
-		contentPane.add(btnGenerateGroups);
-		
-		
-		JLabel lblChooseTheGeneration = new JLabel("Choose the generation method:");
-		lblChooseTheGeneration.setBounds(12, 174, 250, 15);
-		contentPane.add(lblChooseTheGeneration);
+		btnGenerateButton.setBounds(165, 370, 135, 20);
+		contentPane.add(btnGenerateButton);
 	}
 	
 	// Launch the application.
@@ -210,6 +179,7 @@ public class SystemUI extends JFrame {
 				try {
 					SystemUI frame = new SystemUI();
 					frame.setVisible(true);
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

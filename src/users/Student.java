@@ -1,61 +1,45 @@
 package users;
 
+import java.util.List;
+
+import parameters.GroupParameter;
 import parameters.Param;
 import parameters.ParameterSpec;
 
-public class Student extends User {
+public class Student implements User {
 		
+	private String name;
+	private Number numID;
+	private List<GroupParameter> parameters;
+	
 	public Student() {}
 	public Student(String name, Number numID) {
-		super(name,numID);
+		this.name = name; 
+		this.numID = numID;
 	}
-		
+
 	public void setName(String name){
-	   	super.setName(name);
+		this.name = name;
 	}
-
+	
 	public String getName(){
-	   	return super.getName();
-	}
-
-	public void setID(Number numID){
-	   	super.setID(numID);
-	}
-
-	public Number getID(){
-	   	return super.getID();
-	}
-	    
-	public void addParameter(Param propertyName, String property) {
-	   	super.addParameter(propertyName, property);
-	}
-	    
-	public ParameterSpec getParameters() {
-	   	return super.getParameters();
-	}
-	
-	
-	
-
-	/*private String name;
-	private Number number;
-	
-	public Student() {}
-
-    public void setName(String name){
-    	this.name = name;
-    }
-
-    public String getName(){
     	return name;
     }
-
-    public void setNumber(Number number){
-    	this.number = number;
+	    
+	public void setID(Number numID){
+    	this.numID = numID;
+    }
+	    
+	public Number getID(){
+    	return numID;
     }
 
-    public Number getNumber(){
-    	return number;
-    }*/
+	public List<GroupParameter> getParameters() {
+		return parameters;
+	}
+	
+	public void setParameters(List<GroupParameter> paramList) {
+		parameters = paramList;
+	}
 
 }

@@ -1,8 +1,10 @@
 package groupSystem;
 
+import generator.GeneratorStrategy;
 import groups.GroupManager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import parameters.*;
@@ -12,20 +14,20 @@ import users.*;
 
 public class GroupSystem {
 	
-	public static ArrayList<Student> students;
+	public static List<Student> students;
 	private String deadline;
 	private Instructor instructor;
 	private GroupManager groups;
-	private static ArrayList<GroupParameter> params;
+	private List<GroupParameter> params;
 	private String courseName;
 	private String description;
 	private RetrieveStudents retrievalMethod;
 	
 	public GroupSystem() {
 		students = new ArrayList<Student>();
-		instructor = new Instructor();
+		setInstructor(new Instructor());
 		setGroupManager(new GroupManager());
-		params = ParameterCollection.getInstance();
+		params = instructor.getParameters();
 		setRetrievalMethod(new StudentsFromFile());
 	}
 	
@@ -52,12 +54,8 @@ public class GroupSystem {
     	return null;
     }
     
-    public void addInstructor(Instructor instructor) {
+    public void setInstructor(Instructor instructor) {
     	this.instructor = instructor;
-    }
-    
-    public ParameterSpec getParameters() {
-    	return instructor.getParameters();
     }
 
 	public String getCourseName() {
@@ -90,5 +88,9 @@ public class GroupSystem {
 
 	public void setRetrievalMethod(RetrieveStudents retrievalMethod) {
 		this.retrievalMethod = retrievalMethod;
+	}
+	
+	public List<GroupParameter> getParameterList() {
+		return instructor.getParameters();
 	}
 }

@@ -14,6 +14,9 @@ import parameters.ParameterSpec;
 import retrieval.*;
 import systemUI.*;
 import users.*;
+
+//Still only generates students in order of lowest to highest GPA, and puts them
+//into groups using strategy similar to SimpleStrat
 public class ParameterStratTest {
 
 
@@ -30,56 +33,55 @@ public class ParameterStratTest {
 		GroupSystem.students = rs.getStudents();		
 		List<Student> testGroup = GroupSystem.students;
 		
-		/**
-		 * For each student in the group of students, 
-		 * Add a param to the paramList
-		 */
+		EnumMap<Param, String> tmp = new EnumMap<Param,String>(Param.class);
+		tmp.put(Param.NAME, "GPA"); tmp.put(Param.RESPONSE, null);
+		tmp.put(Param.QUERY, "What is your current GPA?");
+		system.getParameterList().add(new GroupParameter(new ParameterSpec(tmp)));
+		tmp = new EnumMap<Param,String>(Param.class);
+		tmp.put(Param.NAME, "Experience"); tmp.put(Param.RESPONSE, null);
+		tmp.put(Param.QUERY, "Do you have any prior experience on this topic?");
+		system.getParameterList().add(new GroupParameter(new ParameterSpec(tmp)));
+		List<GroupParameter> tmpList;
+		// For each student in the group of students, add a param to the paramList
 		for(Student student:testGroup){
-			EnumMap<Param, String> tmpMap = new EnumMap<Param,String>(Param.class);
-			
-			tmpMap.put(Param.NAME, "GPA");
-			tmpMap.put(Param.QUERY, "What is your current GPA?");
-			system.getParameterList().add(new GroupParameter(new ParameterSpec(tmpMap)));
-			student.setParameters(system.getParameterList());
+			tmpList = new ArrayList<GroupParameter>();
+			for (int i=0; i<system.getParameterList().size(); i++) {
+				tmpList.add(new GroupParameter(new ParameterSpec(system.getParameterList().get(i).getSpec().getProperties())));
+			}
+			student.setParameters(tmpList);
 		}
 
-		/**
-		 * For each param in the ParamList
-		 * Add a RESPONSE - The GPA for testing purposes
-		 */
-		for(GroupParameter param:system.getParameterList()){
+		GroupParameter param;
+		for (Student stu: testGroup) {
+		    param = stu.getParameters().get(0);
 			String myGPA = String.valueOf(Math.random()*3+1);
 			String test = myGPA.substring(0, 4);
 			param.getSpec().addProperty(Param.RESPONSE, test);
 		}
-		
-		
+		for (Student stu: testGroup) {
+		    param = stu.getParameters().get(1);
+		    int num = (Math.random()<0.1)?0:1; //Generate yes at ~10%
+		    String test;
+			if (num == 0) test = "Yes";
+			else test = "No";
+			param.getSpec().addProperty(Param.RESPONSE, test);
+			}
 
 
 		GeneratorStrategy gs = new ParameterStrat();
 		ArrayList<Group> aa = gs.generateGroups();
-		int grpNum = 1;
-	/*
-	 *For each param in paramList
-	 *Print the param. 
-	 */
-//		for(GroupParameter param:system.getParameterList()){
-//			System.out.println(param.toString());
-//		}
-		
-		for(Student stu:testGroup){
-			System.out.println(stu.getName());
-			System.out.println(stu.getParameters().get(1).toString() + "\n");
+
+		System.out.println();
+		int grpNum=1;
+		for (Group grp: aa) {
+			System.out.println("\n--Group "+grpNum); grpNum++; 
+			for (Student stu: grp.getStudents()) {
+				System.out.println("\t"+stu.getName());
+				for (int i=0; i<stu.getParameters().size(); i++) {
+					System.out.println("\t  "+stu.getParameters().get(i).toString() + "\n");
+				}
+			}
 		}
-		
-		
-//		System.out.println("\nGenerating groups using simple strategy: ");
-//		for (Group grp: aa) {
-//			System.out.println("--Group "+grpNum); grpNum++; 
-//			for (Student stu: grp.getStudents()) {
-//				System.out.println("\t"+stu.getName());
-//			}
-//		}
 	}
 }
 

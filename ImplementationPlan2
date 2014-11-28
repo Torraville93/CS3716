@@ -1,4 +1,3 @@
-
 - Fix bug that does not print the last group.
 - Add a GUI window to display generated groups.
 
@@ -7,3 +6,15 @@
 
 - If time allows, begin implementing feature 7 "F7-support adding class 
 and private time schedules by students"
+
+-No scrollbar on generated group window
+
+//NOTE: USER - interface for STUDENT and INSTRUCTOR
+//INSTRUCTOR needs to use LIST of PARAMETERS
+//each STUDENT needs to have a copy of said PARAMETER LIST
+//need GETTERS & SETTERS too
+//try to get GUI working with DECENT generator strategy
+//implement simple DECENT strategy 
+
+
+(Perhaps have ParameterSpec as comparing methods, and GroupParameter be the EnumMap)

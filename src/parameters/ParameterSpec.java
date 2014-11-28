@@ -5,7 +5,10 @@ public class ParameterSpec {
 	
 	private EnumMap<Param,String> properties = null;
 	
-	public ParameterSpec() { properties = new EnumMap<Param, String>(Param.class); }
+	public ParameterSpec() { 
+		properties = new EnumMap<Param, String>(Param.class); 
+		}
+	
 	public ParameterSpec(EnumMap<Param,String> properties) {
 		if (properties == null) {
 			this.properties = new EnumMap<Param, String>(Param.class);;
@@ -32,5 +35,10 @@ public class ParameterSpec {
 
 	public EnumMap<Param,String> getProperties() {
 		return properties;
+	}
+	
+	public String toString(){
+		return properties.toString();
+		
 	}
 }

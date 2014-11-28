@@ -15,4 +15,8 @@ public class GroupParameter {
 	public ParameterSpec getSpec() {
 		return spec;
 	}
+	
+	public String toString(){
+		return spec.toString();
+	}
 }

@@ -50,6 +50,7 @@ public class QuestionsUI extends JFrame {
 
 	public QuestionsUI() { system = new GroupSystem(); }
 	public QuestionsUI(GroupSystem sys) {
+		super("Instructor Questions");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 369, 227);
 		contentPane = new JPanel();
@@ -86,7 +87,10 @@ public class QuestionsUI extends JFrame {
 				tmpMap.put(Param.QUERY, txtQuery.getText());
 				tmpMap.put(Param.RESPONSE, null);
 				system.getParameterList().add(new GroupParameter(new ParameterSpec(tmpMap)));
+				//-----------------------------
 				System.out.println(system.getParameterList().size());
+				//-----------------------------
+				txtName.setText(null); txtQuery.setText(null);
 			}
 		});
 		btnAdd.setBounds(261, 162, 71, 25);
@@ -95,6 +99,11 @@ public class QuestionsUI extends JFrame {
 		JButton btnDone = new JButton("Done");
 		btnDone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
+				//-----------------------------
+				for (int i=0; i< system.getParameterList().size(); i++) {
+					System.out.println(system.getParameterList().get(i).toString());
+				}
+				//-----------------------------
 				dispose();
 			}
 		});

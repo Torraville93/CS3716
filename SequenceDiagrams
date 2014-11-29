@@ -8,3 +8,9 @@ https://cloud.githubusercontent.com/assets/9728088/5141011/4e61ec52-714b-11e4-8a
 
 Add/Respond-to Criteria
 https://cloud.githubusercontent.com/assets/9728088/5141013/50494876-714b-11e4-914a-47db92321b1b.png
+
+/*Esteban comment:
+- Unify the add criteria and respond criteria increases the risk of implementation mistakes instead of reducing it.
+- I don't see the functionality to upload schedules and compare schedule students to resolve conflicts
+- I don't see the students notification process after the group parameters are set up
+*/

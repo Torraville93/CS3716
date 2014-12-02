@@ -4,10 +4,10 @@ import generator.*;
 import groupSystem.*;
 import groups.*;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -100,12 +100,20 @@ public class SystemUI extends JFrame {
 		JScrollPane sp = new JScrollPane(txtDescription);
 		sp.setBounds(12, 291, 362, 38);
 		getContentPane().add(sp);
+
+		String basic = "Basic";
+		String feedback = "Feedback";
 		
 		cmboGenerationMethod = new JComboBox(new Object[]{});
+		cmboGenerationMethod.addItem(basic);
+		cmboGenerationMethod.setToolTipText("Creates groups using only group size.");
+		cmboGenerationMethod.addItem(feedback);
+		cmboGenerationMethod.setToolTipText("Creates groups using size as well as answers students submitted from "
+				+ "questions to be asked");
 
-		cmboGenerationMethod.setModel(new DefaultComboBoxModel(new String[] {"Basic", "Feedback"}));
 		cmboGenerationMethod.setBounds(271, 168, 103, 27);
 		contentPane.add(cmboGenerationMethod);
+
 
 		JButton btnGenerateGroups = new JButton("Generate Groups");
 		JButton btnSubmitButton = new JButton("Submit");
@@ -134,8 +142,8 @@ public class SystemUI extends JFrame {
 				System.out.println("Description: "+system.getDescription());	
 				
 				if (cmboGenerationMethod.getSelectedIndex() == 1) {
-					 QuestionsUI qUI = new QuestionsUI();
-					 qUI.setVisible(true);
+		 
+					 QuestionsUI.main(null);
 				}
 				
 				/*

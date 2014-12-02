@@ -1,92 +1,117 @@
 package systemUI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.*;
 
 import parameters.*;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class QuestionsUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtQuery;
 	private JTextField txtName;
+	
+	private JFrame mainFrame;
+	private JLabel headerLabel;
+	private JLabel statusLabel;
+	private JPanel controlPanel;
+	
+	QuestionsUI(){
+		
+		prepareGUI();
+	}
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					QuestionsUI frame = new QuestionsUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+		QuestionsUI questionsUI = new QuestionsUI();
+		questionsUI.showQuestionCombobox();
+	
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public QuestionsUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 369, 227);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	private void prepareGUI(){
+		mainFrame = new JFrame("Add Questions");
+		mainFrame.setSize(400, 400);
+		mainFrame.setLayout(new GridLayout(3,1));
 		
-		JLabel lblPleaseEnterYour = new JLabel("Please enter your question for the students:");
-		lblPleaseEnterYour.setBounds(12, 12, 337, 27);
-		contentPane.add(lblPleaseEnterYour);
+		mainFrame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent windowEvent){
+				System.exit(0);
+			}
+		});
+		headerLabel = new JLabel("",JLabel.CENTER);
+		statusLabel = new JLabel("",JLabel.CENTER);
 		
-		txtQuery = new JTextField();
-		txtQuery.setBounds(12, 46, 327, 32);
-		contentPane.add(txtQuery);
-		txtQuery.setColumns(10);
+		statusLabel.setSize(350,100);
 		
-		JLabel lblEnterAParameter = new JLabel("Enter a parameter name (ie, GPA, experience):");
-		lblEnterAParameter.setBounds(12, 79, 365, 41);
-		contentPane.add(lblEnterAParameter);
+		controlPanel = new JPanel();
 		
-		txtName = new JTextField();
-		txtName.setBounds(12, 116, 120, 32);
-		contentPane.add(txtName);
-		txtName.setColumns(10);
+		mainFrame.add(headerLabel);
+		mainFrame.add(controlPanel);
+		mainFrame.add(statusLabel);
+		mainFrame.setVisible(true);
+		}
+	
+	private void showQuestionCombobox(){
+		headerLabel.setText("Select a question to ask the students");
 		
-		JButton btnAdd = new JButton("Add");
-		btnAdd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		final DefaultComboBoxModel studentQuestions = new DefaultComboBoxModel();
+		
+		studentQuestions.addElement("What is your current GPA?");
+		studentQuestions.addElement("Do you have any prior experience on this topic?");
+		//students.addElement("");
+		
+		final JComboBox questionCombo = new JComboBox(studentQuestions);
+		questionCombo.setSelectedIndex(0);
+		questionCombo.setToolTipText("Hello");
+		JScrollPane questionScrollPane = new JScrollPane(questionCombo);
+		
+		JButton showButton = new JButton("Add");
+		JButton closeButton = new JButton("Done");
+		
+		showButton.addActionListener(new ActionListener (){
+			public void actionPerformed(ActionEvent e) {
+				
+				String tmpString = "";
 				ParameterSpec tmpSpec = new ParameterSpec();
-				tmpSpec.addProperty(Param.NAME, txtName.getText());
-				tmpSpec.addProperty(Param.QUERY, txtQuery.getText());
+				if (questionCombo.getSelectedIndex() != -1){
+					
+					 tmpString = "Question Added: " 
+			                  + questionCombo.getItemAt
+			                    (questionCombo.getSelectedIndex());
+			                    
+					tmpSpec.addProperty(Param.QUERY,
+							(String) questionCombo.getItemAt
+							(questionCombo.getSelectedIndex()));
+					if(questionCombo.getSelectedIndex()==0){
+						tmpSpec.addProperty(Param.NAME,"GPA");
+					}
+					else if(questionCombo.getSelectedIndex()==1){
+						tmpSpec.addProperty(Param.NAME,"EXP");
+					}
+				}
+				statusLabel.setText(tmpString);
+
 			}
 		});
-		btnAdd.setBounds(261, 162, 71, 25);
-		contentPane.add(btnAdd);
 		
-		JButton btnDone = new JButton("Done");
-		btnDone.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("Just use the X");
+		closeButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				mainFrame.dispose();
 			}
 		});
-		btnDone.setBounds(178, 162, 71, 25);
-		contentPane.add(btnDone);
-		
+		controlPanel.add(questionScrollPane);
+		controlPanel.add(showButton);
+		controlPanel.add(closeButton);
+		mainFrame.setVisible(true);
 	}
+	
 }

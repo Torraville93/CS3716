@@ -1,12 +1,35 @@
+By Wednesday, December 3rd:
 
-- Fix bug that does not print the last group.
-- Add a GUI window to display generated groups.
+Since the last implementation deadline, the Question and Response GUIs have been built and modified
+ to accomodate newer strategies. Rather than let the professor type the parameter they will ask about,
+ we'll be implementing a drop-down menu for them to choose from. For now, the only thing being added
+ would be GPA or experience, but in a real-world situation, this could be expanded to any number of 
+things. Likewise, the generated groups now output to the interface, rather than to the console. This 
+allows for a more "Real world" display of how the system may function.
 
-- Implement Feature 6 "support adding queries by instructor, to get additional info from students
-	(schedules, preferences, experience)"
+Following this, primarily what should be accomplished is that the "Decent Generation" strategy is 
+complete. This would generate groups based on similar GPAs and experience. This functions as a 
+proof-of-concept of the ability to generate organized groups, instead of just at random. In reality, 
+if there was more time to implement the other features, schedules and preferences would also be taken 
+into account. By demonstrating the GPA, it shows that there is a working system for other strategies as 
+well as splitting the students into more fair groups.
 
-- If time allows, begin implementing feature 7 "F7-support adding class 
-and private time schedules by students"
+In summary:
+
+1. Create a user interface that allows Professor to enter specifics about course
+2. Display generated groups to the user interface
+3. Modify GUIs to allow Professor to ask/Student to answer.
+4. Have groups generated based on experience/GPA
+5. Add documentation (Comments, modify exisiting diagrams, etc...)
+6. Any non-essential last touches (Make GUI intuitive, add explanations etc...)
+
+These are the things to be done by Wednesday. More would be feasible if there was more time for the 
+project, but instead it will exist as a proof-of-concept that demonstrates the ability to implement 
+more features if necessary. If possible F7 would be implemented, which would allow for Students to 
+upload schedules, and the groups would be generated off of that.
+
+
+--------------------------------
 
 /* Esteban comment:
 - From firstImplementation and ImplementationPlan2 I read that only Features 1, 6 and 7

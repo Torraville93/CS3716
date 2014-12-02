@@ -8,15 +8,17 @@ to generate fair groups amongst the class.
 
 When you first run the software a general window is displayed where the instructor can add information
 about the course including the course name, the size of groups they would like and a deadline to which 
-they want all the student information submitted by. The window also includes
-how the user would like to import the students by selecting from the drop down menu as well as how they 
-want the groups to be generated. There are two different ways for the groups to be generated. By choosing 
-Basic from the drop down menu the groups will be generated randomly from the classlist. The other method 
-feedback is where the instuctor can add specific questions which they would like the students to answer 
-before the deadline provided is passed.  The software also includes a text area in which the instructor 
-can add any addition information for the students to view when they log in to enter information provided 
-by instructor.  When the user has selected feedback as the way in generating groups a second window will
-appear with an easy way to select questions for the students to answer.  When the instructor finds a question
-he would like answered they simply click on the add button and that question is added to the student form. 
-The instuctor can add as many questionss as they like and click on the done button when they have added 
-everything they would like to have answered. 
+they want all the student information submitted by. The software also includes a text area at the bottom
+in which the instructor can add any addition information for the students to view when they log in to enter
+information provided by instructor. The window also includes how the user would like to import the students 
+by selecting from the drop down menu. They have the opition to either manually add each student or they can 
+import the classlist from a file. The other dropdown menu is for the instuctor to choose which way they would 
+like the groups to be generated. There are two different ways for the groups to be generated. By choosing Basic 
+from the drop down menu the groups will be generated randomly from the classlist depending only on the size the 
+instructor provides above. The other method feedback is where the instuctor can create fair groups for projects 
+which required different skills from the students.  The instructor is able to add specific questions which they 
+would like the students to answer before the deadline provided passes.  
+When the feedback opition is selected and the sumbit button is clicked a second window will appear with an easy 
+way to select questions for the students to answer.  When the instructor finds a question they would like answered 
+they simply click on the add button and that question is added to the student form. The instuctor can add as many 
+questionss as they like and click on the done button when they have added everything they would like to have answered. 

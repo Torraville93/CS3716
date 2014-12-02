@@ -32,33 +32,4 @@ public class Instructor extends User {
     public ParameterSpec getParameters() {
     	return super.getParameters();
     }
-	
-	
-	/*
-	public Instructor() {}
-	
-    public void setName(String name){
-    	this.name = name;
-    }
-
-    public String getName(){
-    	return name;
-    }
-
-    public void setID(Number numID){
-    	this.number = numID;
-    }
-
-    public Number getNumber(){
-    	return number;
-    }
-    
-    public void addParameter(Param propertyName, String property) {
-    	params.addParameter(propertyName, property);
-    }
-    
-    public ParameterSpec getParameters() {
-    	return params.getSpec();
-    }
-*/
 }

@@ -1,0 +1,22 @@
+Our software is the best design for your needs because it is extremely easy to use and can generates 
+random or fair groups depending on the type of project given by the instructor.  The application
+has an easy user interface which allows for instuctors of different courses to easily generate groups 
+for any project that may come up during the term. The software allows the instructor to import their
+classlist anyway they like along with different methods to generate the groups. We also offer a way in
+which the instructor can add specific questions in which the student must enter their answers to in order
+to generate fair groups amongst the class.
+
+When you first run the software a general window is displayed where the instructor can add information
+about the course including the course name, the size of groups they would like and a deadline to which 
+they want all the student information added by if any addition questions apply. The window also includes
+how the user would like to import the students by selecting from the drop down menu as well has how they 
+want the groups to be generated. There are two different ways for the groups to be generated. By choosing 
+Basic from the drop down menu the groups will be generated randomly from the classlist. The other method 
+feedback is where the instuctor can add specific questions which they would like the students to answer 
+before the deadline provided is passed.  The software also includes a text area in which the instructor 
+can add any addition information for the students to view when they log in to enter information provided 
+by instructor.  When the user has selected feedback as the way in generating groups a second window will
+appear with an easy way to select questions for the students to answer.  When the instructor finds a question
+he would like answered they simply click on the add button and that question is added to the student form. 
+The instuctor can add as many questionss as they like and click on the done button when they have added 
+everything they would like to have answered. 

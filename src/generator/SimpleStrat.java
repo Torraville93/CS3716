@@ -10,7 +10,10 @@ import java.util.List;
 import retrieval.RetrieveStudents;
 import retrieval.StudentsFromFile;
 import users.Student;
-
+/*
+*  SimpleStrat generates groups from given size by taking each student 
+*  from being of list to end. No addition information.
+*/
 public class SimpleStrat implements GeneratorStrategy {
 
 	//@Override

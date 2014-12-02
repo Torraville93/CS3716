@@ -8,8 +8,8 @@ to generate fair groups amongst the class.
 
 When you first run the software a general window is displayed where the instructor can add information
 about the course including the course name, the size of groups they would like and a deadline to which 
-they want all the student information added by if any addition questions apply. The window also includes
-how the user would like to import the students by selecting from the drop down menu as well has how they 
+they want all the student information submitted by. The window also includes
+how the user would like to import the students by selecting from the drop down menu as well as how they 
 want the groups to be generated. There are two different ways for the groups to be generated. By choosing 
 Basic from the drop down menu the groups will be generated randomly from the classlist. The other method 
 feedback is where the instuctor can add specific questions which they would like the students to answer 

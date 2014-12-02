@@ -1,7 +1,7 @@
 package users;
 
 import parameters.*;
-
+//Super class to Instructor and Student
 public class User {
 		
 	private String name;

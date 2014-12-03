@@ -20,14 +20,13 @@ If the code commented out in QuestionsUI.java (for instructor to add questions) 
 QuestionsUI will open a ResponseUI for each student since it isn't multithreaded. The lines in question 
 are as follows:
 
-//For each student, open ResponseUI to get their responses 
-//Would ideally have a thread for each student instead. (Uncomment this)
-for(Student student: system.students){
-  rUI = new ResponseUI(system, student);
-  rUI.setVisible(true);
-}
-
-//Comment this
-rUI = new ResponseUI(system);
-rUI.setVisible(true);
+				//For each student, open ResponseUI to get their responses
+				//Would ideally have a thread for each student instead.
+				//for(Student student: system.students){
+				//rUI = new ResponseUI(system, student);
+				//rUI.setVisible(true);
+				//}
+				
+				rUI = new ResponseUI(system);
+				rUI.setVisible(true);
 

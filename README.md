@@ -23,8 +23,8 @@ are as follows:
 //For each student, open ResponseUI to get their responses 
 //Would ideally have a thread for each student instead. (Uncomment this)
 for(Student student: system.students){
-rUI = new ResponseUI(system, student);
-rUI.setVisible(true);
+  rUI = new ResponseUI(system, student);
+  rUI.setVisible(true);
 }
 
 //Comment this

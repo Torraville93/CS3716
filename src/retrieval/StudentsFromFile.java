@@ -13,6 +13,9 @@ public class StudentsFromFile implements RetrieveStudents {
 	
 	private File file;
 
+	/**
+	 * Constructors. Initialises file.
+	 */
 	public StudentsFromFile() { file = new File("studentList.csv"); }
 	public StudentsFromFile(File aFile){
 		file = aFile;

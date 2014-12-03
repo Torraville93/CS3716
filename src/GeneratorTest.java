@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import retrieval.*;
-import systemUI.*;
 import users.*;
 
-
+/**
+ * Testing class used for GeneratorStrategy SimpleStrat.
+ * Uses user input for group sizes, and pulls random students from a text file.
+ * Prints output to standard out.
+ */
 public class GeneratorTest {
 	
 	public static void main(String[] args) throws IOException {
@@ -24,15 +27,15 @@ public class GeneratorTest {
 		RetrieveStudents rs = new StudentsFromFile();
 		GroupSystem.students = rs.getStudents();
 
-//		GeneratorStrategy gs = new SimpleStrat();
-//		ArrayList<Group> aa = gs.generateGroups();
-//		int grpNum = 1;
-//		System.out.println("\nGenerating groups using simple strategy: ");
-//		for (Group grp: aa) {
-//			System.out.println("--Group "+grpNum); grpNum++; 
-//			for (Student stu: grp.getStudents()) {
-//				System.out.println("\t"+stu.getName());
-//			}
-//		}
+		GeneratorStrategy gs = new SimpleStrat();
+		ArrayList<Group> aa = gs.generateGroups();
+		int grpNum = 1;
+		System.out.println("\nGenerating groups using simple strategy: ");
+		for (Group grp: aa) {
+			System.out.println("--Group "+grpNum); grpNum++; 
+			for (Student stu: grp.getStudents()) {
+				System.out.println("\t"+stu.getName());
+			}
+		}
 	}
 }

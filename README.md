@@ -20,7 +20,7 @@ If the code commented out in QuestionsUI.java (for instructor to add questions) 
 QuestionsUI will open a ResponseUI for each student since it isn't multithreaded. The lines in question 
 are as follows:
 
-				//Un-comment this (line 133 in QuestionsUI)
+				//Un-comment this (roughly line 133 in QuestionsUI)
 				//For each student, open ResponseUI to get their responses
 				//Would ideally have a thread for each student instead.
 				//for(Student student: system.students){
@@ -32,7 +32,7 @@ are as follows:
 				rUI = new ResponseUI(system);
 				rUI.setVisible(true);
 				
-				//Comment this out as well (line 185 in SystemUI)
+				//Comment this out as well (roughly line 185 in SystemUI)
 				if (genStrategyBox.getSelectedIndex() == 1) //Used for demo
 				simulateStudentsResponding();
 

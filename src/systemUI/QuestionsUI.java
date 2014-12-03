@@ -1,117 +1,145 @@
 package systemUI;
 
-import java.awt.*;
-import java.awt.event.*;
+import groupSystem.GroupSystem;
 
-import javax.swing.*;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
 
 import parameters.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.EnumMap;
 
-
+/**
+ * GUI class to handle questions added by instructor.
+ * Originally allowed instructor to add custom questions, but was asked to 
+ * make it more concrete to show how it works, and reduce possible errors.
+ */
 public class QuestionsUI extends JFrame {
+	
+	private static final String[] questions = {"Please enter your current GPA",
+		"Do you have any prior experience on this topic?"};
 
 	private JPanel contentPane;
-	private JTextField txtQuery;
-	private JTextField txtName;
-	
-	private JFrame mainFrame;
-	private JLabel headerLabel;
-	private JLabel statusLabel;
-	private JPanel controlPanel;
-	
-	QuestionsUI(){
-		
-		prepareGUI();
-	}
+	private JTextArea txtQuery;
+	private GroupSystem system;
+	private JComboBox paramNameBox;
+	private ResponseUI rUI;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-
-		QuestionsUI questionsUI = new QuestionsUI();
-		questionsUI.showQuestionCombobox();
-	
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					QuestionsUI frame = new QuestionsUI(new GroupSystem());
+					frame.setResizable(false);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructors. Initialise GUI with specified widgets.
 	 */
-	private void prepareGUI(){
-		mainFrame = new JFrame("Add Questions");
-		mainFrame.setSize(400, 400);
-		mainFrame.setLayout(new GridLayout(3,1));
+	public QuestionsUI() { system = new GroupSystem(); }
+	public QuestionsUI(GroupSystem sys) {
+		super("Instructor Questions");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 369, 227);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		mainFrame.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent windowEvent){
-				System.exit(0);
+		system = sys;
+		
+		JLabel lblEnterParamName = new JLabel("Choose a parameter name (ie, GPA, experience):");
+		lblEnterParamName.setBounds(12, 12, 337, 27);
+		contentPane.add(lblEnterParamName);
+		
+		String[] paramNames = { "GPA", "Experience"};
+		paramNameBox = new JComboBox(paramNames);
+		paramNameBox.setBounds(12, 46, 120, 32);
+		contentPane.add(paramNameBox);
+		
+		JLabel lblEnterParamQuery = new JLabel("Chosen question for the students:");
+		lblEnterParamQuery.setBounds(12, 79, 365, 41);
+		contentPane.add(lblEnterParamQuery);
+		
+		txtQuery = new JTextArea(2,10); txtQuery.setEditable(false);
+		JScrollPane sp = new JScrollPane(txtQuery);
+		sp.setBounds(12, 116, 327, 32);
+		add(sp);
+		txtQuery.setText(questions[0]); //Default question choice
+		
+		// Listens for parameter name combobox selection.
+		paramNameBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+		        if (e.getItem().equals("GPA")) { 
+		        	txtQuery.setText(questions[0]); 
+		        }
+		        if (e.getItem().equals("Experience")) { 
+		        	txtQuery.setText(questions[1]); 
+		        }
+			}
+	    });
+		
+		// Listens for Add button press.
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				EnumMap<Param,String> tmpMap = new EnumMap<Param,String>(Param.class);
+				tmpMap.put(Param.NAME, (String) paramNameBox.getSelectedItem()); 
+				tmpMap.put(Param.QUERY, txtQuery.getText());
+				tmpMap.put(Param.RESPONSE, null);
+				system.getParameterList().add(new GroupParameter(new ParameterSpec(tmpMap)));
+				//-----------------------------
+				System.out.println(system.getParameterList().size());
+				//-----------------------------
+				txtQuery.setText(null);
 			}
 		});
-		headerLabel = new JLabel("",JLabel.CENTER);
-		statusLabel = new JLabel("",JLabel.CENTER);
+		btnAdd.setBounds(261, 162, 71, 25);
+		contentPane.add(btnAdd);
 		
-		statusLabel.setSize(350,100);
-		
-		controlPanel = new JPanel();
-		
-		mainFrame.add(headerLabel);
-		mainFrame.add(controlPanel);
-		mainFrame.add(statusLabel);
-		mainFrame.setVisible(true);
-		}
-	
-	private void showQuestionCombobox(){
-		headerLabel.setText("Select a question to ask the students");
-		
-		final DefaultComboBoxModel studentQuestions = new DefaultComboBoxModel();
-		
-		studentQuestions.addElement("What is your current GPA?");
-		studentQuestions.addElement("Do you have any prior experience on this topic?");
-		//students.addElement("");
-		
-		final JComboBox questionCombo = new JComboBox(studentQuestions);
-		questionCombo.setSelectedIndex(0);
-		questionCombo.setToolTipText("Hello");
-		JScrollPane questionScrollPane = new JScrollPane(questionCombo);
-		
-		JButton showButton = new JButton("Add");
-		JButton closeButton = new JButton("Done");
-		
-		showButton.addActionListener(new ActionListener (){
-			public void actionPerformed(ActionEvent e) {
-				
-				String tmpString = "";
-				ParameterSpec tmpSpec = new ParameterSpec();
-				if (questionCombo.getSelectedIndex() != -1){
-					
-					 tmpString = "Question Added: " 
-			                  + questionCombo.getItemAt
-			                    (questionCombo.getSelectedIndex());
-			                    
-					tmpSpec.addProperty(Param.QUERY,
-							(String) questionCombo.getItemAt
-							(questionCombo.getSelectedIndex()));
-					if(questionCombo.getSelectedIndex()==0){
-						tmpSpec.addProperty(Param.NAME,"GPA");
-					}
-					else if(questionCombo.getSelectedIndex()==1){
-						tmpSpec.addProperty(Param.NAME,"EXP");
-					}
+		// Listens for Done button press
+		JButton btnDone = new JButton("Done");
+		btnDone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				system.initStuParamLists();
+				//-----------------------------
+				for (int i=0; i< system.getParameterList().size(); i++) {
+					System.out.println(system.getParameterList().get(i).toString());
 				}
-				statusLabel.setText(tmpString);
+				//-----------------------------
 
+				//For each student, open ResponseUI to get their responses
+				//Would ideally have a thread for each student instead.
+//				for(Student student: system.students){
+//					rUI = new ResponseUI(system, student);
+//					rUI.setVisible(true);
+//				}
+				rUI = new ResponseUI(system);
+				rUI.setVisible(true);
+				dispose();
 			}
 		});
+		btnDone.setBounds(178, 162, 71, 25);
+		contentPane.add(btnDone);
 		
-		closeButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				mainFrame.dispose();
-			}
-		});
-		controlPanel.add(questionScrollPane);
-		controlPanel.add(showButton);
-		controlPanel.add(closeButton);
-		mainFrame.setVisible(true);
 	}
-	
 }

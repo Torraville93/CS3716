@@ -131,7 +131,7 @@ public class QuestionsUI extends JFrame {
 				//For each student, open ResponseUI to get their responses
 				//Would ideally have a thread for each student instead.
 //				for(Student student: system.students){
-//					rUI = new ResponseUI(system, student);
+//					rUI = new ResponseUI(system);
 //					rUI.setVisible(true);
 //				}
 

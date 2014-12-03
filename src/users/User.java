@@ -1,41 +1,43 @@
 package users;
 
-import parameters.*;
-//Super class to Instructor and Student
-public class User {
-		
-	private String name;
-	private Number numID;
-	private GroupParameter params;
-		
-	public User() {}
-	public User(String name, Number numID) {
-		this.name = name; 
-		this.numID = numID;
-	}
-	
-	public void setName(String name){
-		this.name = name;
-	}
-	
-	public String getName(){
-    	return name;
-    }
-	    
-	public void setID(Number numID){
-    	this.numID = numID;
-    }
-	    
-	public Number getID(){
-    	return numID;
-    }
+import java.util.List;
 
-	public void addParameter(Param propertyName, String property) {
-		params.addParameter(propertyName, property);
-	}
+import parameters.*;
+
+/**
+ * User interface to allow the use of different concrete users. 
+ * Follows the strategy design pattern.
+ */
+public interface User {
+	
+	/**
+	 * Set user name.
+	 * @param name - a name.
+	 */
+	public void setName(String name);
+	
+	/**
+	 * Get user name.
+	 * @return - the name.
+	 */
+	public String getName();
 	    
-	public ParameterSpec getParameters() {
-		return params.getSpec();
-	}
+	/**
+	 * Set user ID number.
+	 * @param numID - an ID number.
+	 */
+	public void setID(Number numID);
+	    
+	/**
+	 * Get user ID number.
+	 * @return - the ID number.
+	 */
+	public Number getID();
+	    
+	/**
+	 * Get list of user's GroupParameter's.
+	 * @return - list of GroupParameter's.
+	 */
+	public List<GroupParameter> getParameters();
 
 }

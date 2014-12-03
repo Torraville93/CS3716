@@ -4,13 +4,16 @@ import groups.Group;
 
 import java.util.ArrayList;
 
-import users.Student;
-
+/**
+ * Generator interface to allow the use of varying group-generating 
+ * algorithms. Follows the strategy design pattern.
+ */
 public interface GeneratorStrategy {
 	
+	/**
+	 * Generates groups of students of given size.
+	 * @return - list of student Group's
+	 */
 	public ArrayList<Group> generateGroups();
 	
-	
-	
-	//ArrayList<Group> generateGroups(ArrayList<Student> studentList, int groupSize);
 }
